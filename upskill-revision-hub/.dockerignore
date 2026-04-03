@@ -1,0 +1,47 @@
+# version control
+.git
+.gitignore
+.gitattributes
+
+# dependencies
+node_modules/
+npm-debug.log
+npm-error.log
+yarn-error.log
+
+# testing
+coverage/
+.nyc_output/
+
+# production
+build/
+dist/
+
+# environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.circleci/
+Jenkinsfile
+
+# Documentation
+README.md
+CHANGELOG.md
+docs/
+
+# Misc
+.cache/
+.next/
+*.log
