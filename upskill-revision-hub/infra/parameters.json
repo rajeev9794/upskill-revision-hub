@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "eastus"
+    },
+    "appName": {
+      "value": "upskill-revision-hub"
+    },
+    "environment": {
+      "value": "dev"
+    },
+    "acrName": {
+      "value": "upskillregistry"
+    },
+    "acrResourceGroup": {
+      "value": "upskill-rg"
+    },
+    "containerImage": {
+      "value": "upskillregistry.azurecr.io/upskill:latest"
+    },
+    "containerPort": {
+      "value": 3000
+    }
+  }
+}

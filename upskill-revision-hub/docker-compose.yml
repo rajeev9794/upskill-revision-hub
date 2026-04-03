@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  upskill-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: upskill-revision-hub
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    volumes:
+      - ./public:/app/public:ro
+      - ./build:/app/build:ro
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "require('http').get('http://localhost:3000', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    restart: unless-stopped
+    networks:
+      - upskill-network
+
+networks:
+  upskill-network:
+    driver: bridge

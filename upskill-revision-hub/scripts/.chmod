@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Make all scripts executable
+chmod +x scripts/setup-azure.sh
+chmod +x scripts/test-docker.sh
+chmod +x scripts/deploy.sh
+
+echo "✓ Scripts made executable"
