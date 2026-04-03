@@ -4,6 +4,9 @@ const topicsData = [
     icon: '🔢',
     title: 'Data Structures & Algorithms',
     description: 'Master fundamental data structures, algorithms, and problem-solving techniques essential for coding interviews and competitive programming.',
+    category: 'Core CS',
+    difficulty: 'Intermediate',
+    dateAdded: new Date(2024, 0, 15),
     links: [
       { platform: 'LeetCode', url: 'https://leetcode.com' },
       { platform: 'GeeksforGeeks', url: 'https://www.geeksforgeeks.org/data-structures/' },
@@ -16,6 +19,9 @@ const topicsData = [
     icon: '🏗️',
     title: 'System Design',
     description: 'Learn to design scalable, reliable, and maintainable large-scale systems. Understand distributed systems, databases, and architecture patterns.',
+    category: 'Backend',
+    difficulty: 'Advanced',
+    dateAdded: new Date(2024, 0, 20),
     links: [
       { platform: 'System Design Primer', url: 'https://github.com/donnemartin/system-design-primer' },
       { platform: 'Educative - System Design', url: 'https://www.educative.io/courses/grokking-the-system-design-interview' },
@@ -28,6 +34,9 @@ const topicsData = [
     icon: '⚙️',
     title: 'Object-Oriented Programming',
     description: 'Deep dive into OOP concepts including classes, inheritance, polymorphism, encapsulation, and design patterns for building robust software.',
+    category: 'Core CS',
+    difficulty: 'Beginner',
+    dateAdded: new Date(2024, 0, 10),
     links: [
       { platform: 'TutorialsPoint', url: 'https://www.tutorialspoint.com/object_oriented_programming/index.htm' },
       { platform: 'GeeksforGeeks OOP', url: 'https://www.geeksforgeeks.org/object-oriented-programming-oops-concept-in-java/' },
@@ -40,6 +49,9 @@ const topicsData = [
     icon: '✨',
     title: 'SOLID Principles',
     description: 'Master the five SOLID principles (SRP, OCP, LSP, ISP, DIP) for writing maintainable, flexible, and scalable code.',
+    category: 'Design Patterns',
+    difficulty: 'Intermediate',
+    dateAdded: new Date(2024, 0, 25),
     links: [
       { platform: 'Clean Code - Martin', url: 'https://www.oreilly.com/library/view/clean-code-a/9780136083238/' },
       { platform: 'Refactoring.Guru SOLID', url: 'https://refactoring.guru/design-patterns/solid' },
