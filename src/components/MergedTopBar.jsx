@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useFilter } from '../context/FilterContext';
 
 const MergedHeaderContainer = styled.div`
   background-color: ${props => props.theme.colors.cardBg};
