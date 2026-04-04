@@ -39,50 +39,24 @@ HomePage Layout:
 
 #### Grid View (Default) ◧
 
-```
-┌────────────┐ ┌────────────┐ ┌────────────┐
-│   🔢 DSA   │ │ 🏗️ System  │ │ ⚙️ OOP     │
-│            │ │            │ │            │
-│ Core CS    │ │ Backend    │ │ Core CS    │
-│ Intermediate│ │ Advanced   │ │ Beginner   │
-│ ⭐⭐⭐⭐   │ │ ⭐⭐⭐⭐   │ │ ⭐⭐⭐⭐   │
-│            │ │            │ │            │
-│ [View More]│ │ [View More]│ │ [View More]│
-└────────────┘ └────────────┘ └────────────┘
-
-✅ Best for: Visual discovery, attractiveness
-✅ Columns: 3 (desktop), 2 (tablet), 1 (mobile)
-✅ Cards: 220×280px each
-```
+- 3-column card layout
+- Best for: Visual discovery, attractiveness
+- Cards: 220×280px each
+- 3 cols (desktop) → 2 cols (tablet) → 1 col (mobile)
 
 #### List View ▦
 
-```
-┌──────────────────────────────────────────────────┐
-│ 🔢 Data Structures & Algorithms  🔰 Intermediate │
-│ 📊 Core CS | Learn DSA - Essential                │
-│ ⭐⭐⭐ 4.8/5 (234 reviews) | Jan 15 [More→]    │
-└──────────────────────────────────────────────────┘
-
-✅ Best for: Detailed comparison, reading info
-✅ Layout: Full-width rows
-✅ Height: 90px per row
-```
+- Full-width rows
+- Best for: Detailed comparison, reading info
+- Height: 90px per row
+- Shows complete information
 
 #### Compact View ≡
 
-```
- 🔢     🏗️    ⚙️    ✨    🔍    🗄️
-DSA   Sys   OOP  SOLID  Test   DB
-Int   Adv    Beg   Int    Int    Adv
-Core  Back  Core  Core   Core   Back
-4.8   4.7   4.6   4.9    4.5    4.7
-More→ More→ More→ More→  More→  More→
-
-✅ Best for: Maximum content, speed browsing
-✅ Columns: 7 (desktop), 5 (tablet), 3 (mobile)
-✅ Height: 110px per card
-```
+- 5-7 column grid with minimal info
+- Best for: Maximum content, speed browsing
+- Height: 110px per card
+- Perfect for seeing many items at once
 
 **How to Switch:**
 Click the view toggle buttons in the top right:
@@ -304,35 +278,11 @@ Click the view toggle buttons in the top right:
 
 ### Desktop (1024px+)
 
-```
-┌──────────────────────────────────────────┐
-│ Header                                   │
-├──────────────────────────────────────────┤
-│ Control Bar                              │
-├─────────────┬──────────────────────────┤
-│ Sidebar     │ Content (75%)             │
-│ (280px)     │ 3-column grid             │
-│ Visible     │                           │
-└─────────────┴──────────────────────────┘
-```
-
 - Sidebar always visible
 - Click [≡] to collapse to 36px
 - Full feature set
 
 ### Tablet (768-1023px)
-
-```
-┌──────────────────────────────────────────┐
-│ Header                                   │
-├──────────────────────────────────────────┤
-│ Control Bar                              │
-├──────────────────────────────────────────┤
-│ Content (100%)                           │
-│ 2-column grid                            │
-│ [Sidebar hidden, click ≡ to show]        │
-└──────────────────────────────────────────┘
-```
 
 - Sidebar hidden by default
 - Click [≡ Filter] to slide out from left
@@ -341,99 +291,10 @@ Click the view toggle buttons in the top right:
 
 ### Mobile (<768px)
 
-```
-┌──────────────────────────────┐
-│ Header                       │
-├──────────────────────────────┤
-│ Control Bar                  │
-├──────────────────────────────┤
-│ Content (100%)               │
-│ 1-column layout              │
-│                              │
-│ ┌──────────────────────────┐ │
-│ │ [Filter Modal]           │ │
-│ │ Sidebar (bottom-sheet)   │ │
-│ │ Swipe down to close      │ │
-│ └──────────────────────────┘ │
-└──────────────────────────────┘
-```
-
 - Responsive 1-column layout
 - Sidebar as bottom-sheet modal
-- Swipe up/down to open/close
+- Swipe-down to close
 - Full-width content
-
----
-
-## 🎨 Colors & Styling
-
-### Light Mode
-
-- **Background:** Light gray-blue
-- **Cards:** White
-- **Primary text:** Dark gray-blue
-- **Secondary text:** Medium gray
-- **Links:** Bright blue
-- **Badges:**
-  - Beginner: Green
-  - Intermediate: Yellow/Amber
-  - Advanced: Red
-
-### Dark Mode
-
-- **Background:** Dark gray-blue
-- **Cards:** Darker gray-blue
-- **Primary text:** Almost white
-- **Secondary text:** Light gray
-- **Links:** Bright blue (same)
-- **Badges:** Dark backgrounds with light text
-
----
-
-## ⚙️ Settings & Preferences
-
-### Per-Session
-
-- View mode selection (Grid/List/Compact)
-- Sidebar visibility (collapsible on desktop)
-- Active filters
-- Sort preference
-- Search term
-
-### Future (Not Yet Implemented)
-
-- Save filter preferences
-- Save favorite categories
-- Remember last view mode
-- Bookmarks/favorites
-
----
-
-## 🆘 Troubleshooting
-
-### Filters not working?
-
-→ Check the pill display below control bar  
-→ Click pills to verify what's active  
-→ Click "Clear All" to reset
-
-### Can't see sidebar on mobile?
-
-→ Click [≡ Filter] button  
-→ Modal slides up from bottom  
-→ Swipe down to close
-
-### Results not sorting?
-
-→ Open Sort dropdown  
-→ Select different option  
-→ Results update immediately
-
-### View mode not switching?
-
-→ Click the view buttons (◧ ▦ ≡)  
-→ Content layout changes in 0.3s  
-→ Pagination resets
 
 ---
 
@@ -508,8 +369,8 @@ Click the view toggle buttons in the top right:
 
 See implementation details:
 
-- `IMPLEMENTATION_COMPLETE.md` - Full technical overview
-- `FILTER_ENHANCED_DESIGN.md` - Complete design spec
+- `implementation-complete.md` - Full technical overview
+- `enhanced-design.md` - Complete design spec
 
 ---
 

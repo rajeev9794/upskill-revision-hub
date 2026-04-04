@@ -13,28 +13,10 @@ const PanelContainer = styled.div`
 
   @media (max-width: ${props => props.theme.breakpoints.tablet}) {
     width: 280px;
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 100;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-    transform: translateX(${props => props.isOpen ? '0' : '-100%'});
-    transition: transform 0.3s ease;
   }
 
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
     width: 100%;
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: auto;
-    border-right: none;
-    border-top: 1px solid ${props => props.theme.colors.border};
-    max-height: 60vh;
-    transform: translateY(${props => props.isOpen ? '0' : '100%'});
-    transition: transform 0.3s ease;
   }
 `;
 

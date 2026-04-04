@@ -74,12 +74,12 @@ const FilterSidebar = styled.div`
   width: 280px;
   background-color: ${props => props.theme.colors.cardBg};
   border-right: 1px solid ${props => props.theme.colors.border};
-  display: flex;
+  display: ${props => props.shouldShow ? 'flex' : 'none'};
   flex-direction: column;
   overflow-y: auto;
   transition: all 0.3s ease;
 
-  @media (max-width: ${props => props.theme.breakpoints.desktop}) {
+  @media (min-width: ${props => props.theme.breakpoints.desktop}) {
     display: ${props => props.shouldShow ? 'flex' : 'none'};
   }
 
@@ -92,6 +92,7 @@ const FilterSidebar = styled.div`
     z-index: 200;
     border-right: 1px solid ${props => props.theme.colors.border};
     border-top: none;
+    display: ${props => props.shouldShow ? 'flex' : 'none'};
   }
 
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
@@ -105,6 +106,7 @@ const FilterSidebar = styled.div`
     border-top: 1px solid ${props => props.theme.colors.border};
     border-right: none;
     margin-top: auto;
+    display: ${props => props.shouldShow ? 'flex' : 'none'};
   }
 `;
 
@@ -133,8 +135,13 @@ const HomePage = () => {
     const handleResize = () => {
       if (window.innerWidth > 1024) {
         setSidebarOpen(true);
+      } else {
+        setSidebarOpen(false);
       }
     };
+
+    // Set initial state on mount
+    handleResize();
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
