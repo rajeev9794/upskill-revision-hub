@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { ThemeProvider as CustomThemeProvider, useTheme } from './context/ThemeContext';
+import { FilterProvider } from './context/FilterContext';
 import GlobalStyles from './styles/GlobalStyles';
 import Navigation from './components/Navigation';
 import HomePage from './pages/HomePage';
@@ -12,9 +13,11 @@ function AppContent() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <Navigation />
-      <HomePage />
-      <Footer />
+      <FilterProvider>
+        <Navigation />
+        <HomePage />
+        <Footer />
+      </FilterProvider>
     </ThemeProvider>
   );
 }
