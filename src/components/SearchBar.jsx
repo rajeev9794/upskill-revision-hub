@@ -74,14 +74,10 @@ const ClearButton = styled.button`
 `;
 
 const SearchBar = () => {
-  const { searchTerm, setSearchTerm, resetFilters } = useFilter();
+  const { searchTerm, setSearchTerm } = useFilter();
 
   const handleClear = () => {
     setSearchTerm('');
-  };
-
-  const handleReset = () => {
-    resetFilters();
   };
 
   return (

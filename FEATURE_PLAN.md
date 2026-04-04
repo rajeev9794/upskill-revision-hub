@@ -22,9 +22,320 @@ This document outlines planned feature improvements and enhancements for the UpS
 **Tasks:**
 
 - Create `SearchBar.jsx` component
-- Implement filter logic in context/ThemeContext.jsx
+- Implement filter logic in context/FilterContext.jsx
 - Add search state management
 - Write unit tests for search functionality
+
+---
+
+## Phase 0: UI Design & Approval (CURRENT)
+
+### 0.1 Filtering Option - UI Design & Planning
+
+**Priority:** Critical  
+**Status:** Design Phase (Awaiting Approval)  
+**Timeline:** Before Any Implementation
+
+> ⚠️ **IMPORTANT:** All designs must be reviewed and approved before any implementation begins.
+
+#### Design Overview
+
+The filtering system will enhance user experience by allowing them to quickly find relevant topics through:
+
+1. **Category Filtering** - Filter by subject/domain
+2. **Difficulty Level Filtering** - Filter by skill level
+3. **Search Bar** - Text-based search
+4. **Sorting Options** - Order results
+5. **Active Filters Display** - Show applied filters
+6. **Clear Filters Button** - Reset all filters with one click
+
+#### Available Filter Options
+
+```
+Categories:
+- Core CS (Data Structures, OOP, SOLID)
+- Backend (System Design, Databases)
+- Frontend (React, JavaScript, CSS)
+- DevOps (CI/CD, Docker, Kubernetes)
+- Full Stack
+- Tools & Productivity
+
+Difficulty Levels:
+- Beginner
+- Intermediate
+- Advanced
+
+Sorting Options:
+- Alphabetical (A-Z)
+- Date Added (Newest First)
+- Difficulty (Easy to Hard)
+- Difficulty (Hard to Easy)
+```
+
+#### Figma Design Mockups
+
+**DESKTOP VIEW - Main Layout**
+
+```
+┌────────────────────────────────────────────────────────────────┐
+│  UpSkill Revision Hub                                   🔍 🌙  │
+├────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │ FILTER PANEL                                             │  │
+│  ├──────────────────────────────────────────────────────────┤  │
+│  │                                                           │  │
+│  │ 🔍 Search Topics                                         │  │
+│  │ ┌─────────────────────────────────────────────────────┐ │  │
+│  │ │ Search by topic name...                            │ │  │
+│  │ └─────────────────────────────────────────────────────┘ │  │
+│  │                                                           │  │
+│  │ 📂 Category                                              │  │
+│  │ ┌─────────────────────────────────────────────────────┐ │  │
+│  │ │ All Categories                                   ▼ │ │  │
+│  │ └─────────────────────────────────────────────────────┘ │  │
+│  │                                                           │  │
+│  │ 📊 Difficulty Level                                      │  │
+│  │ ┌─────────────────────────────────────────────────────┐ │  │
+│  │ │ All Levels                                       ▼ │ │  │
+│  │ └─────────────────────────────────────────────────────┘ │  │
+│  │                                                           │  │
+│  │ ⬆️ Sort By                                               │  │
+│  │ ┌─────────────────────────────────────────────────────┐ │  │
+│  │ │ Alphabetical (A-Z)                             ▼ │ │  │
+│  │ └─────────────────────────────────────────────────────┘ │  │
+│  │                                                           │  │
+│  │ ┌──────────────┐  ┌──────────────┐  ┌──────────────┐   │  │
+│  │ │ Apply Filter │  │ Reset Filters│  │   Collapse   │   │  │
+│  │ └──────────────┘  └──────────────┘  └──────────────┘   │  │
+│  │                                                           │  │
+│  └──────────────────────────────────────────────────────────┘  │
+│                                                                 │
+│  Active Filters: [Core CS ✕] [Intermediate ✕] [Date: Newest ✕] │
+│                                                                 │
+│  Results: 8 topics found                                        │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐           │
+│  │ Topic Card  │  │ Topic Card  │  │ Topic Card  │           │
+│  │ ⭐⭐⭐⭐    │  │ ⭐⭐⭐⭐    │  │ ⭐⭐⭐⭐    │           │
+│  └─────────────┘  └─────────────┘  └─────────────┘           │
+│                                                                 │
+└────────────────────────────────────────────────────────────────┘
+```
+
+**MOBILE VIEW - Collapsible Filter**
+
+```
+┌──────────────────────────────┐
+│ UpSkill Revision Hub   🔍 🌙  │
+├──────────────────────────────┤
+│                              │
+│ ┌──────────────────────────┐ │
+│ │ 🔽 Filter & Sort (Click) │ │
+│ └──────────────────────────┘ │
+│                              │
+│ Results: 8 topics found      │
+│                              │
+│ ┌────────────────────────┐  │
+│ │ Topic Card             │  │
+│ │ Category: Core CS      │  │
+│ │ Difficulty: Inter.     │  │
+│ └────────────────────────┘  │
+│                              │
+│ ┌────────────────────────┐  │
+│ │ Topic Card             │  │
+│ │ Category: Backend      │  │
+│ │ Difficulty: Advanced   │  │
+│ └────────────────────────┘  │
+│                              │
+└──────────────────────────────┘
+```
+
+**FILTER EXPANDED (MOBILE) - Modal/Drawer View**
+
+```
+┌──────────────────────────────┐
+│ ✕ Filters & Sort             │
+├──────────────────────────────┤
+│                              │
+│ 🔍 Search Topics             │
+│ ┌────────────────────────┐   │
+│ │ Search by name...      │   │
+│ └────────────────────────┘   │
+│                              │
+│ 📂 Category                   │
+│ ☑ Core CS                     │
+│ ☐ Backend                     │
+│ ☐ Frontend                    │
+│ ☐ DevOps                      │
+│ ☐ Full Stack                  │
+│ ☐ Tools & Productivity        │
+│                              │
+│ 📊 Difficulty                 │
+│ ☑ Beginner                    │
+│ ☐ Intermediate                │
+│ ☐ Advanced                    │
+│                              │
+│ ⬆️ Sort By                    │
+│ ◉ Alphabetical (A-Z)         │
+│ ○ Date Added (Newest)        │
+│ ○ Difficulty (Easy → Hard)   │
+│                              │
+│ ┌────────────┐ ┌──────────┐  │
+│ │ Apply      │ │ Reset    │  │
+│ └────────────┘ └──────────┘  │
+│                              │
+└──────────────────────────────┘
+```
+
+**ACTIVE FILTERS DISPLAY**
+
+```
+┌────────────────────────────────────────────┐
+│ Applied Filters:                            │
+│ ┌─────────┐  ┌──────────────┐  ┌────────┐  │
+│ │Core CS✕ │  │Intermediate✕ │  │Newest✕ │  │
+│ └─────────┘  └──────────────┘  └────────┘  │
+│                                             │
+│ Showing 8 of 45 topics                      │
+│ [Clear All Filters]                         │
+└────────────────────────────────────────────┘
+```
+
+#### Component Structure
+
+```
+FilterPanel Redesign:
+├── SearchBar
+│   └── Input field with clear button
+├── FilterGroups
+│   ├── CategoryFilter
+│   │   └── Dropdown/Multi-select
+│   ├── DifficultyFilter
+│   │   └── Dropdown/Multi-select
+│   └── SortFilter
+│       └── Dropdown/Radio buttons
+├── ActiveFiltersTags
+│   └── Removable filter pills
+└── ActionButtons
+    ├── ApplyFilters
+    ├── ResetFilters
+    └── CollapseMobile
+```
+
+#### Design Specifications
+
+**Colors (Theme Aware):**
+
+- Primary Button: #4299E1 (with hover: #3182CE)
+- Filter Pills: #E2E8F0 text on light, #2D3748 on dark
+- Active Filter Badge: #48BB78 (success green)
+- Reset Button: #CBD5E0 (neutral)
+- Border: Theme-aware border color
+
+**Typography:**
+
+- Filter Labels: 12px, 600 weight, uppercase, 0.5px letter-spacing
+- Dropdown Values: 14px, 400 weight
+- Filter Pills: 12px, 500 weight
+
+**Spacing:**
+
+- Filter Groups Gap: 24px (lg)
+- Item Padding: 12px (sm) horizontal, 8px vertical
+- Buttons Gap: 16px (md)
+
+**Responsive Breakpoints:**
+
+- Desktop: Filter panel always visible, inline layout
+- Tablet (≤1024px): Filter panel collapsible sidebar
+- Mobile (≤768px): Filter panel as modal/drawer, auto-collapse
+
+#### User Interactions
+
+1. **Search:**
+   - Real-time filtering as user types
+   - Show search icon in input
+   - Clear button appears when text entered
+   - Case-insensitive matching
+
+2. **Category Filter:**
+   - Dropdown with all options
+   - Visual indicator of selection
+   - Multi-select capability
+
+3. **Difficulty Filter:**
+   - Dropdown with all levels
+   - Visual difficulty badges
+   - Multi-select capability
+
+4. **Sort:**
+   - Dropdown with options
+   - Shows current sort method
+   - Single selection only
+
+5. **Active Filters:**
+   - Display as removable pills
+   - Click to remove individual filter
+   - "Clear All" option below
+
+6. **Mobile Behavior:**
+   - Collapse filter panel by default
+   - Expand to full-height drawer
+   - Apply/Reset buttons sticky at bottom
+   - Results update after apply
+
+#### Accessibility Features
+
+- Proper label-input associations
+- Keyboard navigation support
+- ARIA roles for filter groups
+- Clear focus indicators
+- Screen reader friendly text
+- Semantic HTML structure
+
+#### Performance Considerations
+
+- Debounce search input (300ms)
+- Lazy load filter options if >20 items
+- Memoize filter functions
+- Optimize re-renders with React.memo
+- Local state management first, then context
+
+#### Testing Requirements (Pre-Implementation)
+
+- Unit tests for filter logic
+- Integration tests for FilterPanel
+- E2E tests for filter workflows
+- Mobile responsiveness tests
+- Accessibility audit (WCAG 2.1)
+- Performance benchmarks
+
+---
+
+**⚠️ DESIGN APPROVAL CHECKPOINT**
+
+Please review the mockups above and provide feedback on:
+
+- [ ] Overall layout and organization
+- [ ] Mobile/tablet responsiveness approach
+- [ ] Color scheme and typography
+- [ ] Filter interaction patterns
+- [ ] Active filters display
+- [ ] Component structure
+
+**Status**: ⏳ **AWAITING DESIGN APPROVAL** - No implementation will begin until approved.
+
+Once approved, move to Implementation Phase with these tasks:
+
+1. Update FilterPanel.jsx with new design
+2. Create FilterTags component for active filters
+3. Enhance FilterContext with new state management
+4. Update responsive styles
+5. Add unit tests
+6. Add integration tests
+7. Performance optimization
+
+---
 
 ---
 
