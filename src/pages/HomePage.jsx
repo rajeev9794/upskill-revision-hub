@@ -2,46 +2,18 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import FilterPanel from '../components/FilterPanel';
 import TopControlBar from '../components/TopControlBar';
+import MergedTopBar from '../components/MergedTopBar';
 import ActiveFiltersPills from '../components/ActiveFiltersPills';
 import ContentGrid from '../components/ContentGrid';
 import topicsData from '../data/topicsData';
 import { useFilter } from '../context/FilterContext';
+import { useScrollCollapse } from '../hooks/useScrollCollapse';
 
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
-`;
-
-const Header = styled.div`
-  text-align: center;
-  padding: ${props => props.theme.spacing.xl} ${props => props.theme.spacing.lg};
-  background-color: ${props => props.theme.colors.surface};
-  border-bottom: 1px solid ${props => props.theme.colors.border};
-`;
-
-const Title = styled.h1`
-  font-size: ${props => props.theme.fonts.xlarge};
-  color: ${props => props.theme.colors.primary};
-  margin: 0 0 ${props => props.theme.spacing.sm} 0;
-
-  @media (max-width: ${props => props.theme.breakpoints.tablet}) {
-    font-size: ${props => props.theme.fonts.lg};
-  }
-`;
-
-const Subtitle = styled.p`
-  font-size: ${props => props.theme.fonts.base};
-  color: ${props => props.theme.colors.textSecondary};
-  margin: 0;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-
-  @media (max-width: ${props => props.theme.breakpoints.tablet}) {
-    font-size: ${props => props.theme.fonts.sm};
-  }
 `;
 
 const MainContent = styled.div`
@@ -123,6 +95,7 @@ const ContentArea = styled.div`
 
 const HomePage = () => {
   const { filterTopics, sidebarOpen, setSidebarOpen } = useFilter();
+  const { isCollapsed, toggleCollapse } = useScrollCollapse(100);
   const filteredTopics = filterTopics(topicsData);
 
   // Close sidebar when clicking backdrop on tablet/mobile
@@ -149,17 +122,18 @@ const HomePage = () => {
 
   return (
     <PageContainer>
-      {/* Header */}
-      <Header>
-        <Title>UpSkill Revision Hub</Title>
-        <Subtitle>Master CS fundamentals with curated learning resources</Subtitle>
-      </Header>
+      {/* Merged Top Bar with Collapse */}
+      <MergedTopBar
+        isCollapsed={isCollapsed}
+        onToggleCollapse={toggleCollapse}
+        filteredCount={filteredTopics.length}
+        totalCount={topicsData.length}
+      >
+        <TopControlBar filteredCount={filteredTopics.length} totalCount={topicsData.length} />
+      </MergedTopBar>
 
-      {/* Control Bar */}
-      <TopControlBar filteredCount={filteredTopics.length} totalCount={topicsData.length} />
-
-      {/* Active Filters */}
-      <ActiveFiltersPills />
+      {/* Active Filters - Integrated into subtitle area */}
+      {!isCollapsed && <ActiveFiltersPills />}
 
       {/* Main Content Area */}
       <MainContent>

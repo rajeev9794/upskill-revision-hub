@@ -6,10 +6,10 @@ const FiltersContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: ${props => props.theme.spacing.sm};
-  padding: ${props => props.theme.spacing.md} ${props => props.theme.spacing.lg};
   background-color: ${props => props.theme.colors.surface};
   border-bottom: 1px solid ${props => props.theme.colors.border};
   align-items: center;
+  padding: ${props => props.theme.spacing.xs} ${props => props.theme.spacing.md};
 `;
 
 const FilterPill = styled.span`

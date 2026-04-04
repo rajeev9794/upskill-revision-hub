@@ -6,14 +6,11 @@ const ControlBar = styled.div`
   display: flex;
   align-items: center;
   gap: ${props => props.theme.spacing.md};
-  padding: ${props => props.theme.spacing.md} ${props => props.theme.spacing.lg};
-  background-color: ${props => props.theme.colors.cardBg};
-  border-bottom: 1px solid ${props => props.theme.colors.border};
   flex-wrap: wrap;
   
   @media (max-width: ${props => props.theme.breakpoints.tablet}) {
     gap: ${props => props.theme.spacing.sm};
-    padding: ${props => props.theme.spacing.sm} ${props => props.theme.spacing.md};
+    width: 100%;
   }
 `;
 
